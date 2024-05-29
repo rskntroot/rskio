@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  sphinx-docs:
+    image: rskio/sphinx-docs
+    build: .
+    volumes:
+      - ./docs/:/opt/sphinx/
+      - ./bin/entrypoint.sh:/opt/entrypoint.sh
+    entrypoint: /opt/entrypoint.sh
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 9999:80
+    volumes:
+      - ./docs/build/html:/opt/sphinx/html/:ro
+      - ./nginx/etc/conf.d/:/etc/nginx/conf.d/:ro
+    depends_on:
+      sphinx-docs:
+        condition: service_completed_successfully
