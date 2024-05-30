@@ -15,6 +15,13 @@ entryPoints:
     http3:
       advertisedPort: 443
 
+certificatesresolvers:
+  rskio_certresolver:
+    acme:
+      tlschallenge: true
+      email: rskntroot@gmail.com
+      storage: /letsencrypt/acme.json
+
 log:
   level: INFO
   format: json

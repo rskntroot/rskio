@@ -17,8 +17,9 @@ services:
       - 8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./traefik:/etc/traefik:ro
-      - ./log:/var/log/traefik:rw
+      - ./traefik/etc:/etc/traefik:ro
+      - ./traefik/log:/var/log/traefik
+      - ./traefik/tls:/letsencrypt
 
   nginx:
     image: nginx:latest
@@ -27,6 +28,7 @@ services:
       - traefik.http.routers.rskio.entrypoints=websecure
       - traefik.http.routers.rskio.rule=Host(`rskio.com`)
       - traefik.http.routers.rskio.tls=true
+      - traefik.http.routers.rskio.tls.certresolver=rskio_certresolver
       - traefik.http.routers.rskio.service=rskio@docker
       - traefik.http.services.rskio.loadbalancer.server.port=80
     volumes:
