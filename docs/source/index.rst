@@ -10,7 +10,7 @@ Rskio
    :maxdepth: 2
    :caption: Contents:
 
-   ./docs/example.md
+   ./docs/system_on_chip.md
 
 
 Indices and tables

@@ -7,13 +7,32 @@ services:
       - ./bin/entrypoint.sh:/opt/entrypoint.sh
     entrypoint: /opt/entrypoint.sh
 
+  traefik:
+    image: traefik:latest
+    command:
+      - --configFile=/etc/traefik/traefik.yml
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik:/etc/traefik:ro
+      - ./log:/var/log/traefik:rw
+
   nginx:
     image: nginx:latest
-    ports:
-      - 9999:80
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.rskio.entrypoints=websecure
+      - traefik.http.routers.rskio.rule=Host(`rskio.com`)
+      - traefik.http.routers.rskio.tls=true
+      - traefik.http.routers.rskio.service=rskio@docker
+      - traefik.http.services.rskio.loadbalancer.server.port=80
     volumes:
       - ./docs/build/html:/opt/sphinx/html/:ro
       - ./nginx/etc/conf.d/:/etc/nginx/conf.d/:ro
     depends_on:
       sphinx-docs:
         condition: service_completed_successfully
+

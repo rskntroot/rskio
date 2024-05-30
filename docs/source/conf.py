@@ -24,5 +24,5 @@ exclude_patterns = []
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 # PyData Theme - https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html (0.15.3)
-html_theme = "pydata_sphinx_theme"
+html_theme = "furo"
 html_static_path = ['_static']
