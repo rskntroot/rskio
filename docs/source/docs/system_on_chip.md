@@ -4,7 +4,7 @@
 
 Employing containerized applications via clustering modern ARM-based System on Chip (SoC) 
 
-- rskntroot 2024-05-30
+- by `rskntroot` on `2024-05-30`
 
 ## Background
 
