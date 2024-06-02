@@ -6,7 +6,7 @@ Scoping an 80 terabyte onsite Network Attached Storage (NAS) solution for media 
 
 - by `rskntroot` on `2024-06-01`
 
-## Assmptions
+## Assumptions
 
 At a minimum, the storage solution must provide redundant copies of the data. The solution must function in the event of a single drive. Individual storage drives used must be enterprise-grade, warrantied, with the expectation of 1 million hours Mean Time Between Failures (MTBF).
 
@@ -90,9 +90,44 @@ CAT8 Ethernet Cables: [vabugo amazon store](https://www.amazon.com/stores/VABOGU
 
 ### M.2 NVME Drives
 
-*exploring options*
+#### Crucial P3 Plus
 
-### Alternate NAS
+4TB M.2 NVME [crucial product page](https://www.crucial.com/ssd/p3-plus/ct4000p3pssd8?_gl=1*13sw6no*_up*MQ..*_ga*MTMwNzgxNzQwNC4xNzE3Mjk2NjA3*_ga_6H4RYWV7QY*MTcxNzI5NjYwNy4xLjEuMTcxNzI5NjYxNC4wLjAuMjIzMjAyNjQ2&gclid=CjwKCAjwjeuyBhBuEiwAJ3vuoWUcasHvAhPD74JFCo8NZTNCemm5DIvp9fUT5ZnK-EjCZ97iyNceMhoC1d8QAvD_BwE&gclsrc=aw.ds)
+- 5-year limited warranty
+- 4,800 MB/s Read
+- 1.5m MTBF
 
-*exploring options*
+> `$718 USD | $359 USD (2 ea)`
+
+### Chassis
+
+#### QNAP TVS-H874
+
+8-bay NAS: [qnap product page](https://www.qnap.com/en-us/product/tvs-h874/specs/hardware)
+- EZCOPY USB3.2
+
+Available Upgrades:
+- 10/25 Gb/s networking card
+- Thunderbolt 4 card
+
+> `$2452 USD | chassis`
+
+#### QNAP TS-873A
+
+8-bay NAS: [qnap product page](https://www.qnap.com/en-us/product/ts-873a/specs/hardware)
+- EZCOPY USB3.2
+
+Available Upgrades:
+- 10Gb/s networking card
+- Thunderbolt 3 card
+
+Requires:
+- 32GB Kit (2x16GB) DDR4-3200 SODIMM: [crucial product page](https://www.crucial.com/memory/ddr4/ct2k16g4sfra32a?_gl=1*mq22r2*_up*MQ..*_ga*MTYxODEzNzExLjE3MTcyOTgzMTc.*_ga_6H4RYWV7QY*MTcxNzI5ODMxNy4xLjEuMTcxNzI5ODMyNS4wLjAuMTgxMDAzNjg0MQ..&gclid=CjwKCAjwjeuyBhBuEiwAJ3vuoQXDrg49snbi2juKZJSCftPl9NjUEollcaynaS-faIsCAvWBOMN4yxoCBooQAvD_BwE&gclsrc=aw.ds)
+
+Notes:
+- Entry-level Option
+
+> `$1100 USD | chassis`
+>
+> `$80 USD | memory`
 

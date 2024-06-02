@@ -13,10 +13,3 @@ Rskio
    ./docs/system_on_chip.md
    ./docs/network_attached_storage.md
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
