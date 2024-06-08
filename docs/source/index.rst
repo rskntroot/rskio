@@ -12,4 +12,5 @@ Rskio
 
    ./docs/system_on_chip.md
    ./docs/network_attached_storage.md
+   ./docs/k3s_traefik_setup.md
 
