@@ -1,6 +1,6 @@
-# rskio sphinx-docs
+# rskio mkdocs
 
-rskio website using sphinx-docs w/ markdown support on alpine-linux dockerized
+rskio website using squidfunk/mkdocs-material dockerized with traefik fe-proxy
 
 ## Setup
 
