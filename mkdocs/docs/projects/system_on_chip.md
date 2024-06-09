@@ -50,10 +50,11 @@ Or even just use that 4000-series Nvidia GPU for something other than filling up
 Using Power over Ethernet (PoE) to run your SoCs is just awesome! You only need 1 cable?! Be sure to get yourself some good cables and a solid PoE switch.
 
 I have personnally been using these:
+
 - [CAT8 Ethernet cables](https://www.amazon.com/Ethernet-Internet-Network-Professional-Shielded/dp/B08PL1P53C/ref=sr_1_4?crid=1ELCUKBT7V3YB&dib=eyJ2IjoiMSJ9.W2iSbQd5bQGYHCf-9Vt3AovS1xEhC0zzsheMJG1QFnYut2JmmRCQzZmwq60K1uSUoGiTU8RUzjOTwybWF9lFZrGDx4abFxPwgCaCQTvL9Fvqa6UQ4Qu6o6JWEZRkWwNUWK34Izz1HPf1r54hVQ2NrN6f1r6PDUk2NDEab2zld8MVx2zRT4-s-8-jgwi8ng6wccQVAiJu-kTGeN_fkNohbUcpUMkmE-ARnhBrV05qIZg.OigmTuqYLiyRtsbLu-nXFx2nluGZo0e0IwjWTcXuHgg&dib_tag=se&keywords=cat8%2Bethernet%2Bcable&qid=1717047302&sprefix=cat8%2Caps%2C134&sr=8-4&th=1) by [VABOGU](https://www.amazon.com/stores/VABOGU/page/20815F77-3E58-4871-A2EB-1772920695D9?ref_=ast_bln)
-  - Ive used countless Ethernet Cables and fashioning hundreds of my own, I can confirm these are premium.
+    - Ive used countless Ethernet Cables and fashioning hundreds of my own, I can confirm these are premium.
 - [1G PoE+ 8-port Switch](https://www.amazon.com/dp/B08FCQ8BRC?ref=nb_sb_ss_w_as-reorder_k1_1_9&amp=&crid=1OZ5HYTQCXGAQ&amp=&sprefix=poe+switc) by [AMCREST](https://www.amazon.com/stores/Amcrest/page/2404E471-79FC-4D18-B767-8777D048264F?ref_=ast_bln)
-  - Unmanaged switch that I can recommend. Works like a charm.
+    - Unmanaged switch that I can recommend. Works like a charm.
 
 ### CAT8 Real?
 

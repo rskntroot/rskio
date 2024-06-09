@@ -1,12 +1,4 @@
 services:
-  sphinx-docs:
-    image: rskio/sphinx-docs
-    build: .
-    volumes:
-      - ./docs/:/opt/sphinx/
-      - ./bin/entrypoint.sh:/opt/entrypoint.sh
-    entrypoint: /opt/entrypoint.sh
-
   traefik:
     image: traefik:latest
     command:
@@ -21,8 +13,8 @@ services:
       - ./traefik/log:/var/log/traefik
       - ./traefik/tls:/letsencrypt
 
-  nginx:
-    image: nginx:latest
+  mkdocs:
+    image: squidfunk/mkdocs-material
     labels:
       - traefik.enable=true
       - traefik.http.routers.rskio.entrypoints=websecure
@@ -30,11 +22,7 @@ services:
       - traefik.http.routers.rskio.tls=true
       - traefik.http.routers.rskio.tls.certresolver=rskio_certresolver
       - traefik.http.routers.rskio.service=rskio@docker
-      - traefik.http.services.rskio.loadbalancer.server.port=80
+      - traefik.http.services.rskio.loadbalancer.server.port=8000
     volumes:
-      - ./docs/build/html:/opt/sphinx/html/:ro
-      - ./nginx/etc/conf.d/:/etc/nginx/conf.d/:ro
-    depends_on:
-      sphinx-docs:
-        condition: service_completed_successfully
+      - ./mkdocs:/docs
 
