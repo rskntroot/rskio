@@ -2,7 +2,7 @@
 
 ## Brief
 
-Enabling internal access to dashboard and metrics for traefik ingress controller in k3s kubernetes cluster
+Enabling traefik access to dashboard and metrics for traefik ingress controller in k3s kubernetes cluster
 
 - by `rskntroot` on `2024-07-01`
 
@@ -23,22 +23,29 @@ Server Version: v1.29.5+k3s1
 
 ## Traefik Dashboards
 
-`Traefik Dashboards` refers to both traefik dashboard and prometheus metrics for traefik which are readily available, however, disabled by default in K3S. 
+K3S comes packaged with `Traefik Dashboard` and `Prometheus Metrics` which are disabled by default. 
 
 ### Preparation
 
-Enable `internal`+`.your.domain.com` in non-public DNS
+=== "DNS"
 
-- (alt) edit the `hosts` file on your admin to point the desired k3s host IP
+    Set DNS record `traefik.your.domain.com` in a non-public DNS
 
-On host with `kubectl` access:
-``` bash
-export DOMAIN=your.domain.com
-```
+=== "Hosts File"
+
+    Alternatively, you can just edit your workstations `hosts` file.
+
+    ``` title="/etc/hosts"
+
+    10.0.0.1    traefik.your.domain.com
+
+    ```
 
 !!! warning "This example does not include authentication. Exposing these dashboards is a security risk." 
 
 ### Update Manifest
+
+On host with `kubectl` access.
 
 Add the following to `spec.valuesContent` in:
 
@@ -102,7 +109,7 @@ Save the following to `traefik-dashboard.yml` in your workspace.
 
 === "Traefik Dashboard"
 
-    ``` yaml
+    ``` yaml title="traefik-dashboard.yml"
     apiVersion: v1
     kind: Service
     metadata:
@@ -133,7 +140,7 @@ Save the following to `traefik-dashboard.yml` in your workspace.
         spec.ingressClassName: traefik
     spec:
       rules:
-        - host: internal.${DOMAIN}
+        - host: traefik.${DOMAIN}
           http:
             paths:
               - path: /
@@ -147,7 +154,7 @@ Save the following to `traefik-dashboard.yml` in your workspace.
 
 === "Promethus Only"
 
-    ``` yaml
+    ``` yaml title="traefik-dashboard.yml"
     apiVersion: v1
     kind: Service
     metadata:
@@ -178,7 +185,7 @@ Save the following to `traefik-dashboard.yml` in your workspace.
         spec.ingressClassName: traefik
     spec:
       rules:
-        - host: internal.${DOMAIN}
+        - host: traefik.${DOMAIN}
           http:
             paths:
               - path: /
@@ -199,7 +206,7 @@ Save the following to `traefik-dashboard.yml` in your workspace.
 
 === "Both"
 
-    ``` yaml
+    ``` yaml title="traefik-dashboard.yml"
     apiVersion: v1
     kind: Service
     metadata:
@@ -251,7 +258,7 @@ Save the following to `traefik-dashboard.yml` in your workspace.
         spec.ingressClassName: traefik
     spec:
       rules:
-        - host: internal.${DOMAIN}
+        - host: traefik.${DOMAIN}
           http:
             paths:
               - path: /
@@ -272,7 +279,11 @@ Save the following to `traefik-dashboard.yml` in your workspace.
 
 ### Create Service & Ingress Resources
 
-[envsubst](https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html) - enables code-reuse by providing environment variable substituion as demonstrated below.
+First, set the environment variable for to your domain.
+
+``` bash
+export DOMAIN=your.domain.com
+```
 
 === "Bash"
 
@@ -292,6 +303,10 @@ Save the following to `traefik-dashboard.yml` in your workspace.
     traefik-metrics     ClusterIP      10.43.189.128   <none>    9100/TCP    25s
     ```
 
+!!! note annotate "Why are passing the yaml file into `envsubst`? (1)"
+
+1. `envsubst` - [gnu](https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html) - enables code-reuse by providing environment variable substituion as demonstrated above.
+
 ### Access Dashboards
 
 That's it. You should now be able to access the Traefik Ingress Controller Dashboard and metrics remotely.  
@@ -301,7 +316,7 @@ Don't forget to include the appropriate uri paths:
 === "Traefik Dashboard"
 
     ```
-    https://internal.your.domain.com/dashboard/
+    https://traefik.your.domain.com/dashboard/
     ```
 
     !!! tip "When navigating to the traefik dashboard the `/` at the end is necessary. `/dashboard` will not work. "
@@ -309,7 +324,7 @@ Don't forget to include the appropriate uri paths:
 === "Promethus Metrics"
 
       ```
-      https://internal.your.domain.com/metrics
+      https://traefik.your.domain.com/metrics
       ```
 
 ### Disable Dashboards

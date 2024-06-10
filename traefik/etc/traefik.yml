@@ -10,12 +10,14 @@ entryPoints:
         entryPoint:
           to: websecure
           priority: 10
+      middlewares:
+        - secureHeaders@file
   websecure:
     address: :443
     http3:
       advertisedPort: 443
 
-certificatesresolvers:
+certificatesResolvers:
   rskio_certresolver:
     acme:
       tlschallenge: true
@@ -40,7 +42,7 @@ providers:
     endpoint: unix:///var/run/docker.sock
     network: rskio_default
     exposedByDefault: false
-#  file:
-#    filename: /etc/traefik/dynamic.yml
-#    watch: true
+  file:
+    filename: /etc/traefik/dynamic.yml
+    watch: true
 
