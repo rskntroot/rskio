@@ -1,4 +1,4 @@
-docs/build
+mkdocs/site
 traefik/log/*.log
 traefik/log/*.gz
 traefik/tls/*.json
