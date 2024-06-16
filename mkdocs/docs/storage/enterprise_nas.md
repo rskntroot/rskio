@@ -8,9 +8,9 @@ Scoping an 80 terabyte onsite Network Attached Storage (NAS) solution for media 
 
 ## Assumptions
 
-At a minimum, the storage solution must provide redundant copies of the data. The solution must function in the event of a single drive. Individual storage drives used must be enterprise-grade, warrantied, with the expectation of 1 million hours MTBF.
+At a minimum, the storage solution must provide redundant copies of the data. The solution must function in the event of a single-drive failure. Individual storage drives used must be enterprise-grade, warrantied, with the expectation of 1 million hours MTBF.
 
-Given standard network connectivity is at or under 1Gbps speeds, 10Gb/s internal networking is not expected. However, the storage solution should provide future expansion for 10Gb/s networking.
+Given standard network connectivity is at or under 1Gbps speeds, 10Gb/s internal networking is not expected. However, the storage solution should provide future expansion options for 10Gb/s networking.
 
 Concerns regarding redudant power or battery backup for the solution are outside the scope of this document and would be handled by the customer. Recommened best practice for storage solutions is to keep on a battery backup to allow for graceful shutdown.
 

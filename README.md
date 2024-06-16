@@ -1,6 +1,10 @@
 # rskio mkdocs
 
-rskio website using squidfunk/mkdocs-material dockerized with traefik fe-proxy
+rskio.com website using:
+
+- squidfunk/mkdocs-material to build static html 
+- nginx to host static html
+- traefik as front end proxy, tls, and http3
 
 ## Setup
 
