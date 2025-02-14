@@ -1,5 +1,5 @@
 # rskio
 
-## brief
+## Brief
 
 a mkdocs site for rskio.com

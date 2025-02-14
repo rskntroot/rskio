@@ -1,13 +1,14 @@
 
-# Rust
+# IPADDR
 
-## Env::args()
+## Brief
 
-### Brief
+A naive attempt at optimizing an ipv4 address with only std::env
 
-A naive attempt at optimizing a simple ipv4 address checker using env::args() 
+Note, using `strace` to judge efficacy not a valid approach.
+ I ended up trying a couple different tests, but need to work on better methodology.
 
-#### Assumptions
+## Assumptions
 
 === "Cargo.tml"
 
@@ -21,7 +22,9 @@ A naive attempt at optimizing a simple ipv4 address checker using env::args()
   panic = "abort"
   ```
 
-#### Unoptimized
+## Code
+
+### Unoptimized
 
 - Stores args as an immutable (imut) string vector
 - Stores `ip_addr` as imut string then shadows as imut string slice vector
@@ -87,7 +90,7 @@ A naive attempt at optimizing a simple ipv4 address checker using env::args()
     ```
 
 
-#### Optimized
+### Optimized
 
 - Needs some cleanup
 - Needs break for args after index 1
