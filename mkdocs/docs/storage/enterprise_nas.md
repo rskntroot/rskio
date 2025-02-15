@@ -2,38 +2,57 @@
 
 ## Brief
 
-Scoping an 80 terabyte onsite Network Attached Storage (NAS) solution for media group usage
+Scoping an 138 terabyte onsite Network Attached Storage (NAS) solution for media group usage
 
-- by `rskntroot` on `2024-06-01`
+- by `rskntroot` on `2025-02-15`
 
 ## Assumptions
 
-At a minimum, the storage solution must provide redundant copies of the data. The solution must function in the event of a single-drive failure. Individual storage drives used must be enterprise-grade, warrantied, with the expectation of 1 million hours MTBF.
+To acheive redundant 138TB, RAID 6 will be used.
+ This requires a total of 8x 24TB drives and is the max supported for a single chassis.
 
-Given standard network connectivity is at or under 1Gbps speeds, 10Gb/s internal networking is not expected. However, the storage solution should provide future expansion options for 10Gb/s networking.
+At a minimum, the storage solution must provide redundant copies of the data.
+ The solution must function in the event of a single-drive failure.
+ Individual storage drives used must be enterprise-grade, warrantied, with the expectation of 1 million hours MTBF.
 
-Concerns regarding redudant power or battery backup for the solution are outside the scope of this document and would be handled by the customer. Recommened best practice for storage solutions is to keep on a battery backup to allow for graceful shutdown.
+Given standard network connectivity is at or under 1Gbps speeds, 10Gb/s internal networking is not expected.
+ However, the storage solution should provide future expansion options for 10Gb/s networking.
+
+Concerns regarding redudant power or battery backup for the solution are outside the scope of this document and would be handled by the customer.
+ Recommened best practice for storage solutions is to keep on a battery backup to allow for graceful shutdown.
 
 ## Hardware
 
-> `$8121 USD | hardware-only estimate*`
+> `$7040 USD | hardware-only estimate*`
 
 !!! warning "* Not included: shipping, taxes, build & validation services, installation support"
 
 ### Chassis
 
-=== "QNAP TVS-H874T"
+=== "UGREEN DXP8800 Plus"
 
-    8-bay NAS: [qnap product page](https://www.qnap.com/en-us/product/tvs-h874t/specs/hardware)
+    8-bay NAS: [UGREEN product page](https://nas.ugreen.com/products/ugreen-nasync-dxp8800-plus-nas-storage)
+    - Intel X86 12th Generation Intel® Core™ i5
+    - 10 Cores 12 Threads
+    - Maximum Raw Storage: 208TB (8x 24TB + 2x 8TB)
 
-    - Thunderbolt 4 support
-    - EZCOPY USB3.2
+    > `$1499 USD | Chassis`
 
-    Available Upgrades:
+=== "TeamGroup 64GB DDR5 SODIMM"
 
-    - 10/25 Gb/s networking (upgrade)
+    2x32GB DDR5 SODIMM: [TeamGroup product page](https://www.teamgroupinc.com/en/product-detail/memory/TEAMGROUP/elite-so-dimm-ddr5/elite-so-dimm-ddr5-TED564G5600C46ADC-S01/)
+    - 5-year Warranty
+    - 7000 MB/s Read
 
-    > `$2899 USD | chassis`
+    > `$150 USD | Memory`
+
+=== "TeamGroup MP44Q 2TB NVMe"
+
+    4TB M.2 NVME: [TeamGroup product page](https://www.teamgroupinc.com/en/product-detail/ssd/TEAMGROUP/mp44q/mp44q-TM8FFD004T0C101/)
+    - 5-year Warranty
+    - 7000 MB/s Read
+
+    > `$598 USD | $299 USD (2 ea)`
 
 ### Drives
 
@@ -44,20 +63,8 @@ Concerns regarding redudant power or battery backup for the solution are outside
     - 5-year limited warranty
     - 180MB/s Read (7200RPM)
     - 2.5M MTBF
-    - Compatibility Check [ [PASS](https://www.qnap.com/en-us/compatibility/?model=758&category=1&filter[type]=1&filter[brand]=Seagate&filter[capacity]=24000) ]
 
     > `$4792 USD | $599 USD (8 ea)`
-
-=== "Solidgram P44 Pro"
-
-    2TB M.2 NVME: [solidigm product page]( https://www.solidigm.com/products/client/pro-series/p44.html#form=M.2%202280&cap=2%20TB)
-
-    - 5-year limited warranty
-    - 7000 MB/s Read
-    - 1.6M MTBF
-    - Compatibility Check [ [PASS](https://www.qnap.com/en-us/compatibility/?model=758&category=1&filter[type]=1&filter[brand]=Seagate&filter[capacity]=24000) ]
-
-    > `$398 USD | $199 USD (2 ea)`
 
 ### Misc
 
@@ -66,79 +73,35 @@ Concerns regarding redudant power or battery backup for the solution are outside
     CAT8 Ethernet Cables: [vabugo amazon store](https://www.amazon.com/stores/VABOGU/page/20815F77-3E58-4871-A2EB-1772920695D9?ref_=ast_bln)
 
     - 1/2.5/10/25 Gb/s support
-    - 10' length (standard)
+    - 3x 10' length
+    - 1x 3' length
 
-    > `$32 USD | $16 USD (2 ea)`
+    > `$50 USD | $15 USD (3 ea) + $5 USD (1ea)`
 
-## Deployment Options
+=== "USB-C Ethernet Adapter"
 
-### Hard Drives
+    - 2x USB-C to 2.5Gb/s Ethernet Adapter `$28 USD`
+    - [uni Product Page](https://uniaccessories.com/collections/all-usb-c-products/products/usb-c-to-ethernet-adapter-2500mbps)
 
-=== "8 Drives"
+    > `$56 | $28 USD (2 ea)`
 
-    This maxes out the hardware with a capacity of `~80TB` with read speeds maxing out around `~1440MB/s`.
+## Price Breakdown
 
-=== "6 Drives"
+Hardware pricing can vary greatly.
+ The prices included are meant to serve as an estimate and are provided based on the items' list prices.
 
-    Using 6 drives will bring the total capcacity to `~60TB` and access speed maxing out at `~1080MB/s`. This saturates a 10Gbps connection.
-    
-    Initial Cost down `$1198 USD | ($599 * 8) - ($599 * 4)`
+| Type | Description | Quantity | Base | Price |
+| --- | --- | --- | --- | --- |
+| System |  |  |  |  |
+| > | UGREEN DXP8800 Plus | 1 | `$1399` | `$1399 USD` |
+| > | TeamGroup 2x32GB DDR4 SODIMM | 1 | `$145` | `$145 USD` |
+| > | TeamGroup 2TB M.2 NVMe | 2 | `$299` | `$598 USD` |
+| Storage |  |  |  |  |
+| > | Segate 24TB Enterprise HDDs | 8 | `$599` | `$4792 USD` |
+| Misc |  |  |  |  |
+| > | Vabugo 10ft Ethernet Cable | 3 | `$15` | `$45 USD` |
+| > | Vabugo 3ft Ethernet Cable | 1 | `$5` | `$5 USD` |
+| > | uni USB-C to 2.5Gb/s Ethernet Adapter | 2 | `$28` | `$56 USD` |
+| Total |  |  |  | `$7040 USD` |
 
-=== "4 Drives"
-
-    The minimum capacity of 4 drives provides a capacity of `~40TB` and access speed maxing out at `~720MB/s` read. Bringing the cost down
-    
-    Initial Cost down `$2396 USD | ($599 * 8) - ($599 * 4)`
-
-=== "Future Expansion"
-
-    Can we add more drives? Yes, this option is available, but requires additional hardware.
-  
-    If it is expected to house more than 80TB in the near future, there are other options for hardware available.
-
-!!! note "*2 Drives is not possible, as the requirements for 'fully redundant copies of the data' and 'functionality in the event of a single drive failure' mandate the use of RAID10.  Where the minimum drives in a RAID10 deployment is 4 drives.*"
-
-### M.2 NVME Drives
-
-=== "Crucial P3 Plus"
-
-    4TB M.2 NVME [crucial product page](https://www.crucial.com/ssd/p3-plus/ct4000p3pssd8?_gl=1*13sw6no*_up*MQ..*_ga*MTMwNzgxNzQwNC4xNzE3Mjk2NjA3*_ga_6H4RYWV7QY*MTcxNzI5NjYwNy4xLjEuMTcxNzI5NjYxNC4wLjAuMjIzMjAyNjQ2&gclid=CjwKCAjwjeuyBhBuEiwAJ3vuoWUcasHvAhPD74JFCo8NZTNCemm5DIvp9fUT5ZnK-EjCZ97iyNceMhoC1d8QAvD_BwE&gclsrc=aw.ds)
-
-    - 5-year limited warranty
-    - 4,800 MB/s Read
-    - 1.5m MTBF
-
-> `$718 USD | $359 USD (2 ea)`
-
-### Chassis
-
-=== "QNAP TVS-H874"
-
-    8-bay NAS: [qnap product page](https://www.qnap.com/en-us/product/tvs-h874/specs/hardware)
-
-    - EZCOPY USB3.2
-
-    Available Upgrades:
-
-    - 10/25 Gb/s networking card
-    - Thunderbolt 4 card
-
-    > `$2452 USD | chassis`
-
-=== "QNAP TS-873A"
-
-    8-bay NAS: [qnap product page](https://www.qnap.com/en-us/product/ts-873a/specs/hardware)
-
-    - EZCOPY USB3.2
-
-    Requires:
-
-    - 32GB Kit (2x16GB) DDR4-3200 SODIMM: [crucial product page](https://www.crucial.com/memory/ddr4/ct2k16g4sfra32a?_gl=1*mq22r2*_up*MQ..*_ga*MTYxODEzNzExLjE3MTcyOTgzMTc.*_ga_6H4RYWV7QY*MTcxNzI5ODMxNy4xLjEuMTcxNzI5ODMyNS4wLjAuMTgxMDAzNjg0MQ..&gclid=CjwKCAjwjeuyBhBuEiwAJ3vuoQXDrg49snbi2juKZJSCftPl9NjUEollcaynaS-faIsCAvWBOMN4yxoCBooQAvD_BwE&gclsrc=aw.ds)
-
-    Available Upgrades:
-
-    - 10Gb/s networking card
-    - Thunderbolt 3 card
-
-    > `$1180 USD | chassis + memory`
-
+!!! note "Depending on customer requirements, budget, and risk appetite the price you see above is likely the most you could expect to pay."
