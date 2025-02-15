@@ -54,7 +54,7 @@ Concerns regarding redudant power or battery backup for the solution are outside
 
     > `$598 USD | $299 USD (2 ea)`
 
-### Drives
+### Storage
 
 === "Seagate Exos X24 24TB"
 
@@ -66,7 +66,7 @@ Concerns regarding redudant power or battery backup for the solution are outside
 
     > `$4792 USD | $599 USD (8 ea)`
 
-### Misc
+### Networking
 
 === "Ethernet Cables"
 
@@ -92,14 +92,11 @@ Hardware pricing can vary greatly.
 
 | Type | Description | Quantity | Base | Price |
 | --- | --- | --- | --- | --- |
-| System |  |  |  |  |
-| > | UGREEN DXP8800 Plus | 1 | `$1399` | `$1399 USD` |
+| System | UGREEN DXP8800 Plus | 1 | `$1399` | `$1399 USD` |
 | > | TeamGroup 2x32GB DDR4 SODIMM | 1 | `$145` | `$145 USD` |
 | > | TeamGroup 2TB M.2 NVMe | 2 | `$299` | `$598 USD` |
-| Storage |  |  |  |  |
-| > | Segate 24TB Enterprise HDDs | 8 | `$599` | `$4792 USD` |
-| Misc |  |  |  |  |
-| > | Vabugo 10ft Ethernet Cable | 3 | `$15` | `$45 USD` |
+| Storage | Segate 24TB Enterprise HDDs | 8 | `$599` | `$4792 USD` |
+| Misc | Vabugo 10ft Ethernet Cable | 3 | `$15` | `$45 USD` |
 | > | Vabugo 3ft Ethernet Cable | 1 | `$5` | `$5 USD` |
 | > | uni USB-C to 2.5Gb/s Ethernet Adapter | 2 | `$28` | `$56 USD` |
 | Total |  |  |  | `$7040 USD` |

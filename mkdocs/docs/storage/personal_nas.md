@@ -76,14 +76,11 @@ Hardware pricing can vary greatly.
 
 | Type | Description | Quantity | Base | Price |
 | --- | --- | --- | --- | --- |
-| System |   |  |  |  |
-| > | QNAP TS-673A 6-Bay | 1 | `$1199` | `$1199 USD` |
+| System | QNAP TS-673A 6-Bay | 1 | `$1199` | `$1199 USD` |
 | > | TeamGroup 2x16GB DDR4 SODIMM | 1 | `$85` | `$85 USD` |
 | > | TeamGroup 2TB M.2 NVMe | 2 | `$117` | `$234 USD` |
-| Storage |  |  |  |  |
-| > | Segate 20TB Enterprise HDDs | 6 | `$415` | `$2490 USD` |
-| Network |  |  |  |  |
-| > D-Link 5-Port 2.5Gb Switch | 1 | `$80` | `$80 USD` |
+| Storage | Segate 20TB Enterprise HDDs | 6 | `$415` | `$2490 USD` |
+| Network | D-Link 5-Port 2.5Gb Switch | 1 | `$80` | `$80 USD` |
 | > | Vabugo 10ft Ethernet Cable | 2 | `$15` | `$30 USD` |
 | > | Vabugo 3ft Ethernet Cable | 1 | `$5` | `$5 USD` |
 | > | uni USB-C to 2.5Gb/s Ethernet Adapter | 1 | `$28` | `$28 USD` |
