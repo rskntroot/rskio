@@ -32,6 +32,7 @@ Concerns regarding redudant power or battery backup for the solution are outside
 === "UGREEN DXP8800 Plus"
 
     8-bay NAS: [UGREEN product page](https://nas.ugreen.com/products/ugreen-nasync-dxp8800-plus-nas-storage)
+
     - Intel X86 12th Generation Intel® Core™ i5
     - 10 Cores 12 Threads
     - Maximum Raw Storage: 208TB (8x 24TB + 2x 8TB)
@@ -41,6 +42,7 @@ Concerns regarding redudant power or battery backup for the solution are outside
 === "TeamGroup 64GB DDR5 SODIMM"
 
     2x32GB DDR5 SODIMM: [TeamGroup product page](https://www.teamgroupinc.com/en/product-detail/memory/TEAMGROUP/elite-so-dimm-ddr5/elite-so-dimm-ddr5-TED564G5600C46ADC-S01/)
+
     - 5-year Warranty
     - 7000 MB/s Read
 
@@ -49,6 +51,7 @@ Concerns regarding redudant power or battery backup for the solution are outside
 === "TeamGroup MP44Q 2TB NVMe"
 
     4TB M.2 NVME: [TeamGroup product page](https://www.teamgroupinc.com/en/product-detail/ssd/TEAMGROUP/mp44q/mp44q-TM8FFD004T0C101/)
+
     - 5-year Warranty
     - 7000 MB/s Read
 
