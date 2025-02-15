@@ -3,9 +3,9 @@
 
 ## Brief
 
-Scoping an 48 terabyte onsite Network Attached Storage (NAS) and Networking solution for personal usage
+Scoping an 56 terabyte onsite Network Attached Storage (NAS) and Networking solution for personal usage
 
-- by `rskntroot` on `2024-06-12`
+- by `rskntroot` on `2025-02-15`
 
 ## Assumptions
 
@@ -19,20 +19,20 @@ Concerns regarding redudant power or battery backup for the solution are outside
 
 ### Chassis
 
-=== "QNAP TS-673A"
+=== "UGREEN DXP6800 PRO"
 
-    - `1x` QNAP TS-673A 6-Bay `$899 USD`
+    - `1x` QNAP TS-673A 6-Bay `$1199 USD`
     - [QNAP Product Page](https://www.qnap.com/en-us/product/ts-673a)
 
 === "TeamGroup 32GB DDR4 SODIMM"
 
-    - `2x` 16GB DDR4 SODIMM `$60 USD`
+    - `2x` 16GB DDR5 SODIMM `$85 USD`
     - [TeamGroup Product Page](https://www.teamgroupinc.com/en/product-detail/memory/TEAMGROUP/elite-so-dimm-ddr4/elite-so-dimm-ddr4-TED432G3200C22DC-S01/)
 
-=== "Crucial T500 2TB NVMe"
+=== "TeamGroup T500 2TB NVMe"
 
-    - `2x` 2TB M.2 NVMe `$406 USD`
-    - [Crucial Product Page](https://www.crucial.com/ssd/t500/ct2000t500ssd8)
+    - `2x` 2TB M.2 NVMe `$234 USD`
+    - [Crucial Product Page](https://www.teamgroupinc.com/en/product-detail/ssd/m2/mp44l/mp44l-TM8FPK002T0C101/)
 
 ### Storage
 
@@ -44,10 +44,10 @@ Concerns regarding redudant power or battery backup for the solution are outside
 
 ### Networking
 
-=== "QNAP QSW-1105-5T 5-Port"
-    
-    - `1x` 2.5Gb/s Ethernet Switch `$140 USD`
-    - [QNAP Product Page](https://www.qnap.com/en-us/product/qsw-1105-5t)
+=== "D-Link 5-Port 2.5Gb Switch"
+
+    - `1x` 2.5Gb/s Ethernet Switch `$80 USD`
+    - [D-Link Product Page](https://shop.us.dlink.com/products/dms-105-d-link-5-port-multi-gigabit-unmanaged-ethernet-switch-dms-105)
 
 === "CAT 8 Ethernet Cables"
 
@@ -57,23 +57,23 @@ Concerns regarding redudant power or battery backup for the solution are outside
 
 === "USB-C Ethernet Adapter"
 
-    - 1x USB-C to 2.5Gb/s Ethernet Adapter `$58 USD`
+    - 1x USB-C to 2.5Gb/s Ethernet Adapter `$28 USD`
     - [uni Product Page](https://uniaccessories.com/collections/all-usb-c-products/products/usb-c-to-ethernet-adapter-2500mbps)
 
 ## Price Breakdown
 
 The prices for computer hardware vary greatly based on numerous factors. The prices included are meant to serve as an estimate and are provided based on the items' list prices.
 
-| Type | Description | Quantity | Base | Price | 
+| Type | Description | Quantity | Base | Price |
 | --- | --- | --- | --- | --- |
-| System | QNAP TS-673A 6-Bay | 1 | `$899` | `$899 USD` | 
-| > | TeamGroup 16GB DDR4 SODIMM | 2 | `$30` | `$60 USD` | 
-| > | Crucial 2TB M.2 NVMe | 2 | `$203` | `$406 USD` | 
-| Storage | Segate 20TB Enterprise HDDs | 6 | `$415` | `$2490 USD` | 
-| Network | QNAP 2.5Gb/s Ethernet Switch | 1 | `$140` | `$140 USD` | 
+| System | QNAP TS-673A 6-Bay | 1 | `$1199` | `$1199 USD` |
+| > | TeamGroup 16GB DDR4 SODIMM | 2 | `$30` | `$85 USD` |
+| > | TeamGroup 2TB M.2 NVMe | 2 | `$117` | `$234 USD` |
+| Storage | Segate 20TB Enterprise HDDs | 6 | `$415` | `$2490 USD` |
+| Network | D-Link 5-Port 2.5Gb Switch | 1 | `$80` | `$80 USD` |
 | > | Vabugo 10ft Ethernet Cable | 2 | `$15` | `$30 USD` |
-| > | Vabugo 3ft Ethernet Cable | 1 | `$5` | `$5 USD` | 
-| > | uni USB-C to 2.5Gb/s Ethernet Adapter | 1 | `$58` | `$58 USD` | 
-| Total |  |  |  | `$4088 USD`
+| > | Vabugo 3ft Ethernet Cable | 1 | `$5` | `$5 USD` |
+| > | uni USB-C to 2.5Gb/s Ethernet Adapter | 1 | `$28` | `$28 USD` |
+| Total |  |  |  | `$4151 USD`
 
-!!! note "Depending on customer requirements, budget, risk appetite, and vendor discounts the price you see above is likely the most you could expect to pay."
+!!! note "Depending on customer requirements, budget, and risk appetite the price you see above is likely the most you could expect to pay."
