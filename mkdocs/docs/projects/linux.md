@@ -25,20 +25,20 @@ exit
 
 === "New Key"
 
-  ``` bash
-  ssh-keygen -t ecdsa
-  cat id_ecdsa.pub >> ~/.ssh/authorized_keys
-  ```
+    ``` bash
+    ssh-keygen -t ecdsa
+    cat id_ecdsa.pub >> ~/.ssh/authorized_keys
+    ```
 
 === "Existing Key"
 
-  ``` bash
-  key="ecdsa-sha2-nistp256 ASASDASDFsomekey user@whatever"
-  ```
+    ``` bash
+    key="ecdsa-sha2-nistp256 ASASDASDFsomekey user@whatever"
+    ```
 
-  ``` bash
-  mkdir ~/.ssh && echo ${key} >> ~/.ssh/authorized_keys
-  ```
+    ``` bash
+    mkdir ~/.ssh && echo ${key} >> ~/.ssh/authorized_keys
+    ```
 
 ``` bash
 sudo -i
@@ -95,9 +95,30 @@ sudo apt install -y \
 
 ### Shortcuts
 
+- see [fastfetch](https://github.com/fastfetch-cli/fastfetch) for more info
+
+=== "ARM_64"
+
+    ``` bash
+    mkdir ~/Downloads/ && cd Downloads
+    curl -L https://github.com/fastfetch-cli/fastfetch/releases/download/2.37.0/fastfetch-linux-aarch64.deb -o fastfetch-linux-aarch64.deb
+    sudo dpkg -i fastfetch-linux-aarch64.deb
+    cd ~
+    ```
+
+=== "x86_64"
+
+    ``` bash
+    mkdir ~/Downloads/ && cd Downloads
+    curl -L https://github.com/fastfetch-cli/fastfetch/releases/download/2.37.0/fastfetch-linux-amd64.deb -o fastfetch-linux-amd64.deb
+    sudo dpkg -i fastfetch-linux-amd64.deb
+    cd ~
+    ```
+
 ``` bash
 cat <<%% >> ~/.bashrc
 # RSKIO
+fastfetch
 alias q="exit"
 %%
 source ~/.bashrc

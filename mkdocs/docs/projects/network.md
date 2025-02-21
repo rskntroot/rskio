@@ -24,13 +24,11 @@ Unifi [G5 Bullet](https://techspecs.ui.com/unifi/cameras-nvrs/uvc-g5-bullet) x6
 ### Network Attached Storage
 
 === "6-Bay"
+    UGREEN [DXP6800 PRO](https://www.ugreen.com/collections/nas-storage/products/ugreen-nasync-dxp6800-pro-nas-storage)
 
-  UGREEN [DXP6800 PRO](https://www.ugreen.com/collections/nas-storage/products/ugreen-nasync-dxp6800-pro-nas-storage)
-
-  see [Personal NAS](../storage/personal_nas.md)
+    see [Personal NAS](../storage/personal_nas.md)
 
 === "8-Bay"
+    UGREEN [DXP9800 PRO](https://www.ugreen.com/collections/nas-storage/products/ugreen-nasync-dxp8800-plus-nas-storage)
 
-  UGREEN [DXP9800 PRO](https://www.ugreen.com/collections/nas-storage/products/ugreen-nasync-dxp8800-plus-nas-storage)
-
-  see [Enterprise NAS](../storage/enterprise_nas.md)
+    see [Enterprise NAS](../storage/enterprise_nas.md)
