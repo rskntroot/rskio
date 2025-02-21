@@ -20,15 +20,20 @@ Prounciation:
 
 Nothing.
  Just like QUIC and the G in GNU.
- As with anyone who has been "coding" since 2008, I struggle with naming variables and cache invalidation.
- After trying to pay homage to Nihei's TOHA Heavy Industries, but inevitably settling on the first reasonable sounding 5-letter .com there was.
- I decided to use a blend of a nickname (ruskonator) I was given and Input/Output (IO) and get to work.
- The same goes for "Rskntroot", it's a mix of that same nickname and the classic "root" term.
+ I too struggle with naming variables and cache invalidation.
+ After trying to find a name that pays homage to Nihei's [TOHA Heavy Industries](https://blame.fandom.com/wiki/Toha_Heavy_Industries),
+ I inevitably setted on the first reasonable sounding 5-letter dot com.
+ It made sense if I blended "Ruskonator" (an old nickname) with Input/Output (IO).
+ The same goes for "rskntroot", it's a mix of that same nickname and "root".
 
-## Projects
+## Coding
 
 Currently, this is an unorganized list of things I have spent many of what corporate America refers to as "cycles" on.
 
+## Projects
+
+Currently, the same as "coding".
+
 ## Storage
 
-Also projects, but those dedicated to storage technology.
+Offerings for storage solutions I am willing to build and sell.

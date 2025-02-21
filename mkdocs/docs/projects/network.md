@@ -1,30 +1,36 @@
 # HomeLab Network
 
-## Firewall
+## Classy
 
-https://firewalla.com/products/firewalla-gold-plus
+### Router
 
-## Routing
+Unifi [Dream Machine Special Edition](https://techspecs.ui.com/unifi/unifi-cloud-gateways/udm-se)
 
-https://store.ui.com/us/en/pro/category/all-unifi-cloud-gateways/products/udm-pro-max
+### Switching
 
-## Switching
-
-=== "Switch to Wifi and NAS"
+Unifi [Pro Max 24](https://techspecs.ui.com/unifi/switching/usw-pro-max-24)
 
 Unmanaged PoE Switch with 4 x 2.5GbE PoE+@120W + 2x 10G SFP Uplink
 
-https://www.amazon.com/NICGIGA-Port-2-5G-PoE-10G/dp/B0CDH12CVK?ref_=ast_sto_dp&th=1
+### Wifi
 
-=== "Switch to PoE Cameras"
+Unifi [U7 Pro](https://techspecs.ui.com/unifi/wifi/u7-pro) x6
 
 
+### Cameras
 
-## Wifi
+Unifi [G5 Bullet](https://techspecs.ui.com/unifi/cameras-nvrs/uvc-g5-bullet) x6
 
-https://store.ui.com/us/en/pro/category/all-wifi/products/u7-pro
+### Network Attached Storage
 
-## Cameras
+=== "6-Bay"
 
-https://store.ui.com/us/en/pro/category/all-cameras-nvrs/products/uvc-g5-bullet
+  UGREEN [DXP6800 PRO](https://www.ugreen.com/collections/nas-storage/products/ugreen-nasync-dxp6800-pro-nas-storage)
 
+  see [Personal NAS](../storage/personal_nas.md)
+
+=== "8-Bay"
+
+  UGREEN [DXP9800 PRO](https://www.ugreen.com/collections/nas-storage/products/ugreen-nasync-dxp8800-plus-nas-storage)
+
+  see [Enterprise NAS](../storage/enterprise_nas.md)
