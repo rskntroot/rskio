@@ -8,9 +8,21 @@ Unifi [Dream Machine Special Edition](https://techspecs.ui.com/unifi/unifi-cloud
 
 ### Switching
 
-Unifi [Pro Max 24](https://techspecs.ui.com/unifi/switching/usw-pro-max-24)
+=== "Expensive"
 
-Unmanaged PoE Switch with 4 x 2.5GbE PoE+@120W + 2x 10G SFP Uplink
+    Unifi [Pro Max 24 PoE](https://techspecs.ui.com/unifi/switching/usw-pro-max-24)
+
+    `$799 USD` PoE Switch with 8 x 2.5GbE & 16 1GbE PoE++@400W + 2x 10G SFP Uplink
+
+=== "Cheap"
+
+    Mokerlink [8-Port 2.5Gb PoE Switch](https://www.amazon.com/dp/B0C7VT8TVB/)
+
+    `$89 USD` Unmanaged PoE Switch with 8 x 2.5GbE PoE+@135W + 1x 10G SFP Uplink
+
+    Amcrest [8-Port 1Gb PoE Switch](https://www.amazon.com/dp/dp/B08FCQ8BRC/)
+
+    `$79 USD` Unmanaged PoE Switch with 8 x 1GbE PoE+@96W
 
 ### Wifi
 

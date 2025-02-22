@@ -1,8 +1,8 @@
-# System on Chip
+# Single Board Computers
 
 ## Brief
 
-Employing containerized applications via clustering modern ARM-based System on Chip (SoC)
+Employing containerized applications via clustering ARM-based Single Board Computers (SBC)
 
 - by `rskntroot` on `2024-05-30`
 
