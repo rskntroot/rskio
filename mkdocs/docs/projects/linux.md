@@ -6,7 +6,7 @@ some setup guides
 
 - by `rskntroot` on `2025-02-20`
 
-## Debian
+## Preferences
 
 ### SSH
 
@@ -14,21 +14,23 @@ some setup guides
 
 ``` bash
 sudo -i
+```
+
+``` bash
 cd /etc/ssh/
 mv sshd_config sshd_config.backup
 curl https://raw.githubusercontent.com/k4yt3x/sshd_config/master/sshd_config -o ./sshd_config
-sed -i 's/^#DebianB/DebianB/' sshd_config
 chmod 644 /etc/ssh/sshd_config
+cat <<%% >> /etc/ssh/sshd_config
+# Enable Public Key Auth
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+%%
 systemctl restart ssh
 exit
 ```
 
-=== "New Key"
-
-    ``` bash
-    ssh-keygen -t ecdsa
-    cat id_ecdsa.pub >> ~/.ssh/authorized_keys
-    ```
+### Auth
 
 === "Existing Key"
 
@@ -37,23 +39,21 @@ exit
     ```
 
     ``` bash
-    mkdir ~/.ssh && echo ${key} >> ~/.ssh/authorized_keys
+    mkdir -p ~/.ssh && echo ${key} >> ~/.ssh/authorized_keys
+    ```
+
+=== "New Key"
+
+    ``` bash
+    ssh-keygen -t ecdsa
+    cat id_ecdsa.pub >> ~/.ssh/authorized_keys
     ```
 
 ``` bash
 sudo -i
-cat <<%% >> /etc/ssh/sshd_config
-###RSKIO
-PubkeyAuthentication yes
-AuthorizedKeysFile .ssh/authorized_keys
-%%
-systemctl restart ssh
-exit
 ```
 
 ### Docker
-
-### Setup Docker
 
 - see https://docs.docker.com/engine/install/ubuntu/
 
@@ -68,8 +68,19 @@ docker ps
 
 - see https://docs.docker.com/config/completion/
 
+=== "Debian"
+
+    ``` bash
+    sudo apt install bash-completion -y
+    ```
+
+=== "Fedora"
+
+    ``` bash
+    sudo dnf install bash-completion -y
+    ```
+
 ``` bash
-sudo apt install bash-completion -y
 cat <<%% >> ~/.bashrc
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
@@ -82,37 +93,56 @@ source ~/.bashrc
 
 ### Tools
 
-``` bash
-sudo apt install -y \
-  curl \
-  htop \
-  iputils-ping \
-  jq \
-  tcpdump \
-  traceroute \
-  vim
-```
+=== "Debian"
+
+    ``` bash
+    sudo apt install -y \
+      curl \
+      htop \
+      iputils-ping \
+      jq \
+      tcpdump \
+      traceroute \
+      vim
+    ```
+
+=== "Fedora"
+
+    ``` bash
+    sudo dnf install -y \
+      htop \
+      sensors
+    ```
 
 ### Shortcuts
 
+#### fastfetch
+
 - see [fastfetch](https://github.com/fastfetch-cli/fastfetch) for more info
 
-=== "ARM_64"
+
+=== "Debian"
 
     ``` bash
-    mkdir ~/Downloads/ && cd Downloads
-    curl -L https://github.com/fastfetch-cli/fastfetch/releases/download/2.37.0/fastfetch-linux-aarch64.deb -o fastfetch-linux-aarch64.deb
-    sudo dpkg -i fastfetch-linux-aarch64.deb
-    cd ~
+    url="https://github.com/fastfetch-cli/fastfetch/releases/download/2.37.0/fastfetch-linux-aarch64.deb"
     ```
 
-=== "x86_64"
+    ``` bash
+    mkdir -p ~/downloads/ && cd ~/downloads
+    curl -fsSLO ${url} -o ${file}
+    sudo dpkg -i fastfetch-installer
+    ```
+
+=== "Fedora"
 
     ``` bash
-    mkdir ~/Downloads/ && cd Downloads
-    curl -L https://github.com/fastfetch-cli/fastfetch/releases/download/2.37.0/fastfetch-linux-amd64.deb -o fastfetch-linux-amd64.deb
-    sudo dpkg -i fastfetch-linux-amd64.deb
-    cd ~
+    url="https://github.com/fastfetch-cli/fastfetch/releases/download/2.37.0/fastfetch-linux-aarch64.deb"
+    ```
+
+    ``` bash
+    mkdir -p ~/downloads/ && cd ~/downloads
+    curl -fsSLO ${url} -o ${file}
+    sudo dnf install fastfetch-installer
     ```
 
 ``` bash
