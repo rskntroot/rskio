@@ -49,13 +49,9 @@ exit
     cat id_ecdsa.pub >> ~/.ssh/authorized_keys
     ```
 
-``` bash
-sudo -i
-```
-
 ### Docker
 
-- see https://docs.docker.com/engine/install/ubuntu/
+- see [https://docs.docker.com/engine/install/ubuntu/](https://docs.docker.com/engine/install/ubuntu/)
 
 ``` bash
 curl -fsSL https://get.docker.com -o get-docker.sh
@@ -66,7 +62,7 @@ sudo usermod -a -G docker $(whoami)
 docker ps
 ```
 
-- see https://docs.docker.com/config/completion/
+- see [https://docs.docker.com/config/completion/](https://docs.docker.com/config/completion/)
 
 === "Debian"
 
@@ -119,7 +115,6 @@ source ~/.bashrc
 #### fastfetch
 
 - see [fastfetch](https://github.com/fastfetch-cli/fastfetch) for more info
-
 
 === "Debian"
 
