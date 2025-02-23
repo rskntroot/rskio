@@ -16,7 +16,8 @@ Welcome to my recommended HomeLab network setup! Here’s a breakdown of the key
 
 ### Switching
 
-=== Standard
+=== "Standard"
+
     **Unifi [Pro Max 24 PoE](https://techspecs.ui.com/unifi/switching/usw-pro-max-24)**
     - **Price:** $799 USD
     - **Specs:**
@@ -24,7 +25,8 @@ Welcome to my recommended HomeLab network setup! Here’s a breakdown of the key
       - 16 × 1GbE PoE++ @ 400W
       - 2 × 10G SFP+ uplinks
 
-=== Cheaper
+=== "Cheaper"
+
     **Mokerlink [8-Port 2.5Gb PoE Switch](https://www.amazon.com/dp/B0C7VT8TVB/)**
     - **Price:** $89 USD
     - **Specs:**
