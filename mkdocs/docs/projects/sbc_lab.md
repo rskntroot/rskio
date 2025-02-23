@@ -1,8 +1,10 @@
-# Raspberry Pi Homelab Build
+# RaspberryPi HomeLab
 
 ## Brief
 
 This page documents a Raspberry Pi-based homelab build, listing the required components and their respective sources.
+
+- by `rskntroot` on `2025-02-22`
 
 ## Core Components
 

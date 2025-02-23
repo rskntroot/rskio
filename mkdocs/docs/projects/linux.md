@@ -124,20 +124,20 @@ source ~/.bashrc
 
     ``` bash
     mkdir -p ~/downloads/ && cd ~/downloads
-    curl -fsSLO ${url} -o ${file}
-    sudo dpkg -i fastfetch-installer
+    curl -fsSLO ${url} -o fastfetch-installer
+    sudo dpkg -i ./fastfetch-installer
     ```
 
 === "Fedora"
 
     ``` bash
-    url="https://github.com/fastfetch-cli/fastfetch/releases/download/2.37.0/fastfetch-linux-aarch64.deb"
+    url="https://github.com/fastfetch-cli/fastfetch/releases/download/2.37.0/fastfetch-linux-amd64.rpm"
     ```
 
     ``` bash
     mkdir -p ~/downloads/ && cd ~/downloads
-    curl -fsSLO ${url} -o ${file}
-    sudo dnf install fastfetch-installer
+    curl -fsSLO ${url} -o fastfetch-installer
+    sudo dnf install ./fastfetch-installer
     ```
 
 ``` bash
