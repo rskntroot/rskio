@@ -30,8 +30,8 @@ Concerns regarding redudant power or battery backup for the solution are outside
 
 === "UGREEN DXP6800 PRO"
 
-    - `1x` QNAP TS-673A 6-Bay `$1199 USD`
-    - [QNAP Product Page](https://www.qnap.com/en-us/product/ts-673a)
+    - `1x` UGREEN NASync DXP6800 Pro `$1199 USD`
+    - [UGREEN Product Page](https://nas.ugreen.com/products/ugreen-nasync-dxp6800-pro-nas-storage)
 
 === "TeamGroup 32GB DDR5 SODIMM"
 
