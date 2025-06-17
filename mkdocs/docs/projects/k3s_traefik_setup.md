@@ -23,9 +23,11 @@ Server Version: v1.29.5+k3s1
 
 ## Traefik Dashboards
 
-K3S comes packaged with `Traefik Dashboard` and `Prometheus Metrics` which are disabled by default. 
+K3S comes packaged with `Traefik Dashboard` enabled by default, but not exposed.
 
 ### Preparation
+
+#### DNS
 
 === "DNS"
 
@@ -41,344 +43,131 @@ K3S comes packaged with `Traefik Dashboard` and `Prometheus Metrics` which are d
 
     ```
 
-!!! warning "This example does not include authentication. Exposing these dashboards is a security risk." 
+!!! warning "This example does not include authentication. Exposing these dashboards is a security risk. Recommend enabling mTLS."
 
-### Update Manifest
+#### Middlewares
 
 On host with `kubectl` access.
 
-Add the following to `spec.valuesContent` in:
+create `middlewares.yaml`
 
-``` bash
-vim /var/lib/rancher/k3s/server/manifests/traefik.yaml 
+=== Basic
+
+``` yaml
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-https
+  namespace: default
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+    port: "443"
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-dashboard
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://([^/]+)/?$"
+    replacement: "https://${1}/dashboard/"
+    permanent: true
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: ratelimit
+  namespace: default
+spec:
+  rateLimit:
+    average: 100
+    burst: 50
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: compress
+  namespace: default
+spec:
+  compress: {}
 ```
 
-=== "Yaml"
-
-    ``` yaml
-        dashboard:
-          enabled: true
-        metrics:
-          prometheus: true
-    ```
-
-=== "Example"
-
-    ``` yaml
-    spec:
-      chart: https://%{KUBERNETES_API}%/static/charts/traefik-25.0.3+up25.0.0.tgz
-      set:
-        global.systemDefaultRegistry: ""
-      valuesContent: |-
-        deployment:
-          podAnnotations:
-            prometheus.io/port: "8082"
-            prometheus.io/scrape: "true"
-        dashboard:
-          enabled: true
-        metrics:
-          prometheus: true
-    ```
-
-### Restart Ingress Controller
-
-=== "Bash"
-
-    ``` bash
-    kubectl -n kube-system scale deployment traefik --replicas=0
-    # wait a few seconds
-    kubectl -n kube-system get deployment traefik
-    kubectl -n kube-system scale deployment traefik --replicas=1
-    ```
-
-=== "Example"
-
-    ``` bash
-    $ kubectls scale deployment traefik --replicas=0
-    deployment.apps/traefik scaled
-    $ kubectls get deployment traefik
-    NAME      READY   UP-TO-DATE   AVAILABLE   AGE
-    traefik   0/0     0            0           3d1h
-    $ kubectls scale deployment traefik --replicas=1
-    deployment.apps/traefik scaled
-    ```
-
-### Create Resource Definition YAML
-
-Save the following to `traefik-dashboard.yml` in your workspace.
-
-=== "Traefik Dashboard"
-
-    ``` yaml title="traefik-dashboard.yml"
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: traefik-dashboard
-      namespace: kube-system
-      labels:
-        app.kubernetes.io/instance: traefik
-        app.kubernetes.io/name: traefik-dashboard
-    spec:
-      type: ClusterIP
-      ports:
-      - name: traefik
-        port: 9000
-        targetPort: 9000
-        protocol: TCP
-      selector:
-        app.kubernetes.io/instance: traefik-kube-system
-        app.kubernetes.io/name: traefik
-
-    ---
-
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: traefik-ingress
-      namespace: kube-system
-      annotations:
-        spec.ingressClassName: traefik
-    spec:
-      rules:
-        - host: traefik.${DOMAIN}
-          http:
-            paths:
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: traefik-dashboard
-                    port:
-                      number: 9000
-    ```
-
-=== "Promethus Only"
-
-    ``` yaml title="traefik-dashboard.yml"
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: traefik-metrics
-      namespace: kube-system
-      labels:
-        app.kubernetes.io/instance: traefik
-        app.kubernetes.io/name: traefik-metrics
-    spec:
-      type: ClusterIP
-      ports:
-      - name: traefik
-        port: 9100
-        targetPort: 9100
-        protocol: TCP
-      selector:
-        app.kubernetes.io/instance: traefik-kube-system
-        app.kubernetes.io/name: traefik
-
-    ---
-
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: traefik-ingress
-      namespace: kube-system
-      annotations:
-        spec.ingressClassName: traefik
-    spec:
-      rules:
-        - host: traefik.${DOMAIN}
-          http:
-            paths:
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: traefik-dashboard
-                    port:
-                      number: 9000
-              - path: /metrics
-                pathType: Prefix
-                backend:
-                  service:
-                    name: traefik-metrics
-                    port:
-                      number: 9100
-    ```
-
-=== "Both"
-
-    ``` yaml title="traefik-dashboard.yml"
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: traefik-dashboard
-      namespace: kube-system
-      labels:
-        app.kubernetes.io/instance: traefik
-        app.kubernetes.io/name: traefik-dashboard
-    spec:
-      type: ClusterIP
-      ports:
-      - name: traefik
-        port: 9000
-        targetPort: 9000
-        protocol: TCP
-      selector:
-        app.kubernetes.io/instance: traefik-kube-system
-        app.kubernetes.io/name: traefik
-
-    ---
-
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: traefik-metrics
-      namespace: kube-system
-      labels:
-        app.kubernetes.io/instance: traefik
-        app.kubernetes.io/name: traefik-metrics
-    spec:
-      type: ClusterIP
-      ports:
-      - name: traefik
-        port: 9100
-        targetPort: 9100
-        protocol: TCP
-      selector:
-        app.kubernetes.io/instance: traefik-kube-system
-        app.kubernetes.io/name: traefik
-
-    ---
-
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: traefik-ingress
-      namespace: kube-system
-      annotations:
-        spec.ingressClassName: traefik
-    spec:
-      rules:
-        - host: traefik.${DOMAIN}
-          http:
-            paths:
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: traefik-dashboard
-                    port:
-                      number: 9000
-              - path: /metrics
-                pathType: Prefix
-                backend:
-                  service:
-                    name: traefik-metrics
-                    port:
-                      number: 9100
-    ```
-
-### Create Service & Ingress Resources
-
-First, set the environment variable for to your domain.
-
 ``` bash
-export DOMAIN=your.domain.com
+kubectl apply -f middlewares.yml
 ```
 
-=== "Bash"
+### Setup IngressRoute
 
-    ``` bash
-    envsubst < traefik-dashboard.yml | kubectl apply -f -
-    ```
+``` bash
+export DOMAIN=your-domain.com
+```
 
-=== "Example"
+create `ingress.yml` and update `"edge.rskio.com"` with your domain name
 
-    ``` bash
-    $ envsubst < traefik-dashboards.yml | kubectl apply -f -
-    service/traefik-dashboard created
-    service/traefik-metrics created
-    ingress.networking.k8s.io/traefik-ingress created
-    $ kubectls get svc | grep traefik-
-    traefik-dashboard   ClusterIP      10.43.157.54    <none>    9000/TCP    25s
-    traefik-metrics     ClusterIP      10.43.189.128   <none>    9100/TCP    25s
-    ```
+``` yaml
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`edge.rskio.com`) # Update with your domain name
+      kind: Rule
+      services:
+        - name: api@internal
+          kind: TraefikService
+      middlewares:
+        - name: redirect-https
+        - name: redirect-dashboard
+        - name: ratelimit
+        - name: compress
+```
 
-!!! note annotate "Why are passing the yaml file into `envsubst`? (1)"
+``` bash
+kubectl apply -f ingress.yml
+```
 
-1. `envsubst` - [gnu](https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html) - enables code-reuse by providing environment variable substituion as demonstrated above.
+## Access Dashboards
 
-### Access Dashboards
+You should now be able to access the Traefik Ingress Controller Dashboard and metrics remotely.
 
-That's it. You should now be able to access the Traefik Ingress Controller Dashboard and metrics remotely.  
-
-Don't forget to include the appropriate uri paths:
+From web browser go to the domain you specified in the ingress.
 
 === "Traefik Dashboard"
 
     ```
-    https://traefik.your.domain.com/dashboard/
+    https://edge.your.domain.com
     ```
 
-    !!! tip "When navigating to the traefik dashboard the `/` at the end is necessary. `/dashboard` will not work. "
+    will follow `redirect-https` and get you to
 
-=== "Promethus Metrics"
-
-      ```
-      https://traefik.your.domain.com/metrics
-      ```
+    ```
+    https://edge.your.domain.com/dashboard/#/
+    ```
 
 ### Disable Dashboards
 
 === "Bash"
 
     ``` bash
-    envsubst < traefik-dashboard.yml | kubectl delete -f -
+    kubectl delete -f ingress.yml
     ```
 
 === "Example"
 
     ``` bash
-    $ envsubst < traefik-dashboards.yml | kubectl delete -f -
-    service "traefik-dashboard" deleted
-    service "traefik-metrics" deleted
-    ingress.networking.k8s.io "traefik-ingress" deleted
+    $ kubectl delete -f traefik/ingress.yml
+    ingressroute.traefik.io "traefik-ingress" deleted
     ```
-
-## Shortcuts
-
-### alias kubectls
-
-!!! tip "When using an `alias` to substitute `kubectl` command completion will not work."
-
-=== "Bash"
-
-    ``` bash
-    echo 'alias kubectls="kubectl -n kube-system"' >> ~/.bashrc
-    source ~/.bashrc
-    ```
-
-=== "Example"
-
-    ``` bash
-    $ echo 'alias kubectls="kubectl -n kube-system"' >> ~/.bashrc
-    $ source ~/.bashrc
-    $ kubectls get deployments
-    NAME                     READY   UP-TO-DATE   AVAILABLE   AGE
-    coredns                  1/1     1            1           3d2h
-    local-path-provisioner   1/1     1            1           3d2h
-    metrics-server           1/1     1            1           3d2h
-    traefik                  1/1     1            1           3d2h
-    ```
-
-#### Alternatives 
-
-- `skubectl` means you can hit `[up-arrow]` `[ctrl]+[a]` `[s]` `[enter]` when you inevitably forget to include `-n kube-system`
-- `kubectls` just adds `[alt]+[right-arrow]` into the above before `[s]`
-- `kubesctl` makes sense because all of these are really kube-system-ctl, but that adds 4x `[right-arrow]`, ewww.
 
 
 ## References
 
 - [https://docs.k3s.io](https://docs.k3s.io)
-- [https://k3s.rocks/traefik-dashboard/](https://k3s.rocks/traefik-dashboard/)
-- [https://doc.traefik.io/traefik/v2.10/](https://doc.traefik.io/traefik/v2.10/)
+- [https://doc.traefik.io/traefik/](https://doc.traefik.io/traefik/)

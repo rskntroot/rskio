@@ -119,7 +119,7 @@ source ~/.bashrc
 === "Debian"
 
     ``` bash
-    url="https://github.com/fastfetch-cli/fastfetch/releases/download/2.37.0/fastfetch-linux-aarch64.deb"
+    url="https://github.com/fastfetch-cli/fastfetch/releases/download/2.45.0/fastfetch-linux-aarch64.deb"
     ```
 
     ``` bash
@@ -131,7 +131,7 @@ source ~/.bashrc
 === "Fedora"
 
     ``` bash
-    url="https://github.com/fastfetch-cli/fastfetch/releases/download/2.37.0/fastfetch-linux-amd64.rpm"
+    url="https://github.com/fastfetch-cli/fastfetch/releases/download/2.45.0/fastfetch-linux-amd64.rpm"
     ```
 
     ``` bash
@@ -143,7 +143,7 @@ source ~/.bashrc
 ``` bash
 cat <<%% >> ~/.bashrc
 # RSKIO
-fastfetch
+alias ff="fastfetch"
 alias q="exit"
 %%
 source ~/.bashrc

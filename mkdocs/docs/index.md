@@ -6,7 +6,7 @@ This site is meant to catalog my efforts.
  Over the years, I've "spun my wheels" to learn, get things working, or explore interesting ideas--only for them to be lost to time.
  You might see this site as a collection of my notes or at times my memoirs, words shaped only by my inspiration in the moment.
  However, I intend for it to be much more.
- This site exists for me along with the hope that something I've done might help you.
+ This site exists for me in hope that something I've done might help you.
 
 ## What does Rskio Mean?
 
