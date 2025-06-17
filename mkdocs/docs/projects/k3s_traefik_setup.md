@@ -10,15 +10,15 @@ Enabling traefik access to dashboard and metrics for traefik ingress controller 
 
 ``` bash
 $ k3s --version
-k3s version v1.29.5+k3s1 (4e53a323)
-go version go1.21.9
+k3s version v1.32.5+k3s1 (8e8f2a47)
+go version go1.23.8
 ```
 
 ``` bash
 $ kubectl version
-Client Version: v1.29.5+k3s1
-Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
-Server Version: v1.29.5+k3s1
+Client Version: v1.32.5+k3s1
+Kustomize Version: v5.5.0
+Server Version: v1.32.5+k3s1
 ```
 
 ## Traefik Dashboards
