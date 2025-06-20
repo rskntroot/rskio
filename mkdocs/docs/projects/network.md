@@ -89,20 +89,23 @@ Welcome to my recommended HomeLab network setup! Here’s a breakdown of the key
 ### Cameras
 
 **Unifi [G5 Bullet](https://techspecs.ui.com/unifi/cameras-nvrs/uvc-g5-bullet)**
+
 - 4MP resolution, HDR, AI motion detection.
 
 ---
 
 ## Network Attached Storage
 
-#### 6-Bay NAS
+=== "6-Bay NAS"
 
     **UGREEN [DXP6800 PRO](https://www.ugreen.com/collections/nas-storage/products/ugreen-nasync-dxp6800-pro-nas-storage)**
+
     - See [Personal NAS](../storage/personal_nas.md) for setup details.
 
-#### 8-Bay NAS
+=== "8-Bay NAS"
 
     **UGREEN [DXP9800 PRO](https://www.ugreen.com/collections/nas-storage/products/ugreen-nasync-dxp8800-plus-nas-storage)**
+
     - See [Enterprise NAS](../storage/soho_nas.md) for more details.
 
 ---

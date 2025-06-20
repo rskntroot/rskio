@@ -26,13 +26,17 @@ Nothing.
  It made sense if I blended "Ruskonator" (an old nickname) with Input/Output (IO).
  The same goes for "rskntroot", it's a mix of that same nickname and "root".
 
-## Coding
+## Code
 
-Currently, this is an unorganized list of things I have spent many of what corporate America refers to as "cycles" on.
+Some code that I have spent many of what corporate America refers to as "cycles" on.
+
+## Notes
+
+References to information that I have found myself revisiting.
 
 ## Projects
 
-Currently, the same as "coding".
+An unorganized list of guides and project ideas that I have taken the time to document.
 
 ## Storage
 
