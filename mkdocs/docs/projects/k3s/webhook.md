@@ -22,36 +22,70 @@ So what if when we push to github, we setup a webhook that tells kubernetes to k
 
 ### RBAC
 
-``` yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: webhook-job-trigger
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: job-creator
-  namespace: dev
-rules:
-  - apiGroups: ["batch"]
-    resources: ["jobs"]
-    verbs: ["create"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: job-creator-binding
-  namespace: dev
-subjects:
-  - kind: ServiceAccount
-    name: webhook-job-trigger
-    namespace: default
-roleRef:
-  kind: Role
-  name: job-creator
-  apiGroup: rbac.authorization.k8s.io
-```
+=== "ServiceAccount"
+
+    ``` yaml
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: webhook-job-trigger
+    ```
+
+=== "Dev Roles"
+
+    ``` yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      name: job-creator
+      namespace: dev
+    rules:
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create"]
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      name: job-creator-binding
+      namespace: dev
+    subjects:
+      - kind: ServiceAccount
+        name: webhook-job-trigger
+        namespace: default
+    roleRef:
+      kind: Role
+      name: job-creator
+      apiGroup: rbac.authorization.k8s.io
+    ```
+
+=== "Prod Roles"
+
+    ``` yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      name: job-creator
+      namespace: prod
+    rules:
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create"]
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      name: job-creator-binding
+      namespace: prod
+    subjects:
+      - kind: ServiceAccount
+        name: webhook-job-trigger
+        namespace: default
+    roleRef:
+      kind: Role
+      name: job-creator
+      apiGroup: rbac.authorization.k8s.io
+    ```
 
 ### ConfigMap
 
@@ -137,19 +171,6 @@ create `etc/hooks.yaml`
               parameter:
                 source: payload
                 name: repository.full_name
-          - or:
-              - match:
-                type: value
-                value: refs/heads/dev
-                parameter:
-                  source: payload
-                  name: ref
-              - match:
-                type: value
-                value: refs/heads/main
-                parameter:
-                  source: payload
-                  name: ref
     ```
 
 === "Secret"
@@ -171,17 +192,17 @@ create `etc/hooks.yaml`
 
 #### Command
 
-create `etc/reload.sh`
-
-``` bash
+``` bash title="etc/reload.sh"
 #!/bin/sh
 
 REF=$1
 REPO=$2
 
 dispatch() {
+    NS=$1
+    JOB_JSON=$2
     SA_PATH="/var/run/secrets/kubernetes.io/serviceaccount"
-    curl https://kubernetes.default.svc/apis/batch/v1/namespaces/dev/jobs \
+    curl https://kubernetes.default.svc/apis/batch/v1/namespaces/${NS}/jobs \
         -X POST \
         -H "Authorization: Bearer $(cat ${SA_PATH}/token)" \
         -H "Content-Type: application/json" \
@@ -192,17 +213,16 @@ dispatch() {
 docs(){
     case ${REF} in
         refs/heads/dev)
-            JOB_JSON="/etc/webhook/mkdocs-dev.json"
+            dispatch dev "/etc/webhook/mkdocs-dev.json"
             ;;
         refs/heads/main)
-            JOB_JSON="/etc/webhook/mkdocs-main.json"
+            dispatch prod "/etc/webhook/mkdocs-main.json"
             ;;
         *)
             echo "skipping push to unsupported ref ${REF}"
             exit 0
             ;;
     esac
-    dispatch
 }
 
 case ${REPO} in
