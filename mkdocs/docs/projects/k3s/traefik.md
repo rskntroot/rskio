@@ -1,4 +1,4 @@
-# K3S Traefik Setup
+# Traefik
 
 ## Brief
 
@@ -21,7 +21,7 @@ Kustomize Version: v5.5.0
 Server Version: v1.32.5+k3s1
 ```
 
-## Traefik Dashboards
+## Dashboards
 
 K3S comes packaged with `Traefik Dashboard` enabled by default, but not exposed.
 
@@ -31,16 +31,14 @@ K3S comes packaged with `Traefik Dashboard` enabled by default, but not exposed.
 
 === "DNS"
 
-    Set DNS record `traefik.your.domain.com` in a non-public DNS
+    Set DNS record `traefik.your.domain.com`
 
 === "Hosts File"
 
-    Alternatively, you can just edit your workstations `hosts` file.
+    Alternatively, you can just edit your `hosts` file.
 
     ``` title="/etc/hosts"
-
     10.0.0.1    traefik.your.domain.com
-
     ```
 
 !!! warning "This example does not include authentication. Exposing these dashboards is a security risk. Recommend enabling mTLS."
@@ -49,11 +47,7 @@ K3S comes packaged with `Traefik Dashboard` enabled by default, but not exposed.
 
 On host with `kubectl` access.
 
-create `middlewares.yaml`
-
-=== Basic
-
-``` yaml
+``` yaml title="middlewares.yml"
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
@@ -101,13 +95,9 @@ kubectl apply -f middlewares.yml
 
 ### Setup IngressRoute
 
-``` bash
-export DOMAIN=your-domain.com
-```
-
 create `ingress.yml` and update `"edge.rskio.com"` with your domain name
 
-``` yaml
+``` yaml title="ingress.yml"
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:

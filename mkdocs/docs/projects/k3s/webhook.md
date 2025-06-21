@@ -32,6 +32,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: job-creator
+  namespace: dev
 rules:
   - apiGroups: ["batch"]
     resources: ["jobs"]
@@ -41,9 +42,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: job-creator-binding
+  namespace: dev
 subjects:
   - kind: ServiceAccount
     name: webhook-job-trigger
+    namespace: default
 roleRef:
   kind: Role
   name: job-creator
@@ -59,12 +62,7 @@ We will create a config map from a directory including the following files.
 We are going to be using curl to call the kubernetes API directly,
  so we need to convert our job from yaml to json.
 
-=== "Convert"
-
-    ``` bash
-    mkdir etc
-    cat job.yml | yq -e -j | jq > etc/mkdocs-dev.json
-    ```
+Convert the job to JSON and save to `etc/mkdocs-dev.json`
 
 === "Job"
 
@@ -97,7 +95,12 @@ We are going to be using curl to call the kubernetes API directly,
                 claimName: mkdocs-pvc
     ```
 
-Convert the job and save to `etc/mkdocs-dev.json`.
+=== "Convert"
+
+    ``` bash
+    mkdir etc
+    cat job.yml | yq -e -j | jq > etc/mkdocs-dev.json
+    ```
 
 The following docs we will assume that you also created `etc/mkdocs-main.json`.
 
@@ -105,7 +108,7 @@ The following docs we will assume that you also created `etc/mkdocs-main.json`.
 
 create `etc/hooks.yaml`
 
-=== `etc/hooks.yaml`
+=== "etc/hooks.yaml"
 
     ``` yaml
     - id: rskio-mkdocs
@@ -233,13 +236,56 @@ The following resources will complete the work
 
 === "Deployment"
 
-``` yaml
-```
+    ``` yaml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: webhook-docs
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: webhook-docs
+      template:
+        metadata:
+          labels:
+            app: webhook-docs
+        spec:
+          serviceAccountName: webhook-job-trigger
+          containers:
+            - name: webhook-docs
+              image: ghcr.io/linuxserver-labs/webhook:latest
+              command: ["/app/webhook"]
+              args:
+                - -hooks=/etc/webhook/hooks.yaml
+                - -hotreload
+                - -verbose
+              volumeMounts:
+                - name: webhook-etc
+                  mountPath: /etc/webhook
+          volumes:
+            - name: webhook-etc
+              configMap:
+                name: webhook-etc
+                defaultMode: 493 # 0755
+    ```
 
 === "Service"
 
-``` yaml
-```
+    ``` yaml
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: webhook
+    spec:
+      selector:
+        app: webhook-docs
+      ports:
+        - protocol: TCP
+          port: 9000
+          targetPort: 9000
+      type: ClusterIP
+    ```
 
 === "Certificate"
 
@@ -294,13 +340,12 @@ The following resources will complete the work
         secretName: io-rsk-hooks-tls
     ```
 
-
 ## Testing
 
 ``` bash
-curl -X POST https://hooks.dev.rsk.io/rskio-mkdocs \
+curl -X POST https://hooks.dev.rsk.io/hooks/rskio-mkdocs \
   -H 'X-Github-Event: push' \
-  -H 'Content-type: application-json'
+  -H 'Content-type: application-json' \
   -d '{"ref": "refs/heads/dev","repository": {"full_name":"rskntroot/rskio"}}'
 ```
 

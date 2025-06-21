@@ -11,7 +11,7 @@ All cluster nodes need these packages installed:
 sudo apt install open-iscsi nfs-common -y
 ```
 
-see (longhorn os-specific requirements)[https://longhorn.io/docs/1.9.0/deploy/install/#osdistro-specific-configuration] for more information.
+see [longhorn os-specific requirements](https://longhorn.io/docs/1.9.0/deploy/install/#osdistro-specific-configuration) for more information.
 
 ## Setup
 
@@ -21,7 +21,7 @@ see (longhorn os-specific requirements)[https://longhorn.io/docs/1.9.0/deploy/in
     kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.9.0/deploy/longhorn.yaml
     ```
 
-see (longhorn installation)[https://longhorn.io/docs/1.9.0/deploy/install/install-with-kubectl/#installing-longhorn] for more information.
+see [longhorn installation](https://longhorn.io/docs/1.9.0/deploy/install/install-with-kubectl/#installing-longhorn) for more information.
 
 ## Dashboard
 

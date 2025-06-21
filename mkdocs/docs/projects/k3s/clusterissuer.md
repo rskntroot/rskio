@@ -4,7 +4,7 @@ Allows certificate requests from an ACME provider. This is used to enable HTTPS 
 
 ## Setup
 
-see (cert-manager kubectl install)[https://cert-manager.io/docs/installation/kubectl/] for more info
+see [cert-manager kubectl install](https://cert-manager.io/docs/installation/kubectl/) for more info
 
 === "v1.18"
 
@@ -18,7 +18,7 @@ create at least one of the `clusterissuers` types below
 
 uses LetsEncrypt and public DNS records to sign https for your sites
 
-``` yaml
+``` yaml title="letsencrypt/clusterissuer.yml"
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
@@ -41,7 +41,7 @@ spec:
 
 pointed at an internal ACME provider to generate certs for an intranet
 
-``` yaml
+``` yaml title="internal/clusterissuer.yml"
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
@@ -97,7 +97,7 @@ create a `certificate.yml` file for a traefik `IngressRoute`
           domain: docs-dev-rsk-io
     ```
 
-=== "IngressRoute
+=== "IngressRoute"
 
     ``` yaml
     apiVersion: traefik.io/v1alpha1
@@ -118,6 +118,6 @@ create a `certificate.yml` file for a traefik `IngressRoute`
         secretName: io-rsk-docs-tls
     ```
 
-after applying this `Certifcate` a `Secret` is created containing the `.crt` and `.key` files.
+After applying this `Certifcate` a `Secret` is created containing the `.crt` and `.key` files.
  These are loaded by the traefik.io `IngressRoute` under `spec.tls.secretName`.
  This enables usage of the tls cert for https client reachability.
