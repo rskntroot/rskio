@@ -2,8 +2,6 @@
 
 A minimal shell script for interacting with a [rustypaste](https://github.com/orhun/rustypaste) server
 
-[https://github.com/rskntroot/oxpasta](https://github.com/rskntroot/oxpasta)
-
 ## Brief
 
 As someone who needed quick access to only a handful of features, [rpaste](https://github.com/orhun/rustypaste-cli) was overkill. As such, this shell only provides shortcuts for 3 features: upload, oneshot (-o), and url shortening (-s).

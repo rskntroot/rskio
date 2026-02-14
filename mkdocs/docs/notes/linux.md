@@ -54,38 +54,43 @@ exit
 - see [https://docs.docker.com/engine/install/ubuntu/](https://docs.docker.com/engine/install/ubuntu/)
 
 ``` bash
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh ./get-docker.sh
-sudo systemctl enable --now docker
-rm -f ./get-docker.sh
-sudo usermod -a -G docker $(whoami)
+sudo -i
+curl -fsSL https://get.docker.com | sh
+systemctl enable --now docker
+```
+
+``` bash
+usermod -aG docker ${SOME_USER}
 docker ps
 ```
 
+#### Completion
+
 - see [https://docs.docker.com/config/completion/](https://docs.docker.com/config/completion/)
 
-=== "Debian"
+=== "docker"
+
+    ``` bash
+    mkdir -p ~/.local/share/bash-completion/completions
+    docker completion bash > ~/.local/share/bash-completion/completions/docker
+    source ~/.bashrc
+    ```
+
+=== "bash"
 
     ``` bash
     sudo apt install bash-completion -y
     ```
 
-=== "Fedora"
-
     ``` bash
-    sudo dnf install bash-completion -y
+    cat <<%% >> ~/.bashrc
+    if [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
+    %%
     ```
 
-``` bash
-cat <<%% >> ~/.bashrc
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
-%%
-mkdir -p ~/.local/share/bash-completion/completions
-docker completion bash > ~/.local/share/bash-completion/completions/docker
-source ~/.bashrc
-```
+
 
 ### Tools
 
@@ -114,37 +119,27 @@ source ~/.bashrc
 
 #### fastfetch
 
-- see [fastfetch](https://github.com/fastfetch-cli/fastfetch) for more info
+- see [fastfetch](https://github.com/fastfetch-cli/fastfetch/releases) for more info
 
-=== "Debian"
+``` bash
+url="https://github.com/fastfetch-cli/fastfetch/releases/download/2.47.0/fastfetch-linux-amd64.deb"
+```
 
-    ``` bash
-    url="https://github.com/fastfetch-cli/fastfetch/releases/download/2.45.0/fastfetch-linux-aarch64.deb"
-    ```
+``` bash
+mkdir -p ~/downloads/ && cd ~/downloads
+curl -fsSL ${url} -o fastfetch.deb
+sudo dpkg -i ./fastfetch.deb
+```
 
-    ``` bash
-    mkdir -p ~/downloads/ && cd ~/downloads
-    curl -fsSLO ${url} -o fastfetch-installer
-    sudo dpkg -i ./fastfetch-installer
-    ```
-
-=== "Fedora"
-
-    ``` bash
-    url="https://github.com/fastfetch-cli/fastfetch/releases/download/2.45.0/fastfetch-linux-amd64.rpm"
-    ```
-
-    ``` bash
-    mkdir -p ~/downloads/ && cd ~/downloads
-    curl -fsSLO ${url} -o fastfetch-installer
-    sudo dnf install ./fastfetch-installer
-    ```
+#### Profile
 
 ``` bash
 cat <<%% >> ~/.bashrc
 # RSKIO
-alias ff="fastfetch"
+alias ..="cd .."
+alias ...="cd ..."
 alias q="exit"
+alias ff="fastfetch"
 %%
 source ~/.bashrc
 ```
